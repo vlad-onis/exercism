@@ -1,11 +1,15 @@
 pub fn square_of_sum(n: u32) -> u32 {
-    todo!("square of sum of 1...{n}")
+    // Unwrapping here because the return type is u32
+    // There's no nice way to handle the None case
+    // The problem assumes basically that no overflow will occur
+    let sum = n.checked_mul(n + 1).unwrap() / 2;
+    sum * sum
 }
 
 pub fn sum_of_squares(n: u32) -> u32 {
-    todo!("sum of squares of 1...{n}")
+    (1..n + 1).into_iter().map(|elem| elem * elem).sum()
 }
 
 pub fn difference(n: u32) -> u32 {
-    todo!("difference between square of sum of 1...{n} and sum of squares of 1...{n}")
+    square_of_sum(n) - sum_of_squares(n)
 }
